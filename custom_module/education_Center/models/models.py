@@ -23,7 +23,7 @@ class Course(models.Model):
 
 class Teacher(models.Model):
     _name = 'edu_center.teacher'
-    _description = 'O\'qituvchi ma\'lumotlari'
+    _description = "O'qituvchi ma'lumotlari"
 
     name = fields.Char(string='Ism', required=True)
     email = fields.Char(string='Elektron pochta')
@@ -32,13 +32,13 @@ class Teacher(models.Model):
 
 class Payment(models.Model):
     _name = 'edu_center.payment'
-    _description = 'To\'lov ma\'lumotlari'
+    _description = "To'lov ma'lumotlari"
 
     student_id = fields.Many2one('edu_center.student', string='Talaba')
     course_id = fields.Many2one('edu_center.course', string='Kurs')
     amount = fields.Float(string='Summa')
     date = fields.Date(string='Sana', default=fields.Date.today())
-    description = fields.Text(string='Ta\'rif')
+    description = fields.Text(string="Ta'rif")
     admin_approved = fields.Boolean(string='Admin tasdiqlandi')
 
     @api.model

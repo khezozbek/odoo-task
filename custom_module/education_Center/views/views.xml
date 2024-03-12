@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- to'lovlarning erkanga chiqarish -->
+        <record id="view_payment_tree" model="ir.ui.view">
+            <field name="name">edu_center.payment.tree</field>
+            <field name="model">edu_center.payment</field>
+            <field name="arch" type="xml">
+                <tree string="Payments">
+                    <field name="student_id"/>
+                    <field name="course_id"/>
+                    <field name="amount"/>
+                    <field name="date"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- actions -->
+        <record id="action_payment_list" model="ir.actions.act_window">
+            <field name="name">Payments</field>
+            <field name="res_model">edu_center.payment</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- To'lovlar uchun menyu -->
+        <menuitem id="menu_payment" name="Payments" parent="base.menu_administration" sequence="10"/>
+        <menuitem id="menu_payment_list" name="Payment List" parent="menu_payment" action="action_payment_list"/>
+
+        <!-- Xavfsizlik qoidalari -->
+        <record id="group_admin" model="res.groups">
+            <field name="name">Admin</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_administrator" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- Administrator uchun kirish huquqlari -->
+        <record id="access_admin_payment" model="ir.model.access">
+            <field name="name">Access Admin Payment</field>
+            <field name="model_id" ref="model_edu_center_payment"/>
+            <field name="group_id" ref="group_admin"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- Administrator uchun kirish huquqlari -->
+        <record id="access_administrator_payment" model="ir.model.access">
+            <field name="name">Access Administrator Payment</field>
+            <field name="model_id" ref="model_edu_center_payment"/>
+            <field name="group_id" ref="group_administrator"/>
+            <field name="perm_read" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

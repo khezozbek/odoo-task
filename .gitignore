@@ -1,0 +1,7 @@
+venv
+/venv
+.idea
+__payache__
+/__payache__/
+/.DB_STORY/
+odoo
